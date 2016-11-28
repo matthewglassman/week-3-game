@@ -3,6 +3,7 @@
 // var bwayPhoto  may hold a photo for related bway show
 var wordBank = ["phantom", "cats", "hairspray", "hamilton", "rent", "grease"]
 var chosenWord = ""; //will hold the word that is randomly chosen. Produced via function.
+var guess;// will take keyboard input from user
 var lettersGuessed = []; //an array filled by keystrokes entered by the user.  Uses a .push or .appendChild?
 var guessesRemaining = chosenWord.length + 4
 var wins = 0;
@@ -32,12 +33,28 @@ var onStart = {
 				blanks.push("_");
 				console.log(blanks);
 		},//closing wordDashed
+	guesstimation: function(){
+			document.onkeyup = function(event){
+				//var letters = /^[a-zA-Z]+$/;
+				//if (event.value.match(somethinghere?)){
+				guess = String.fromCharCode(event.keyCode).toUpperCase();
+				//return true;
+				//} else {
+				//alert("Please enter only alpha characters!");
+				//return false;
+				// }//closing if statement checking for alpha characters
+				console.log(guess);
+				//console.log(lettersGuessed);
+			}//closing the document on key up function for guessing the letter
+	},//close the guesstimation function
+
+
 	}// closing the object onStart
 		
 onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
-
+onStart.guesstimation();
 
 
 // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
