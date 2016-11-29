@@ -60,20 +60,21 @@ var onStart = {
 			}//closing the document on key up function for guessing the letter
 	},//close the guesstimation function
 	
+	//put this function into the guestimation function and follow your pseudocode as to what happens.  change == guess to letter and call function with (guess)
 	wordcompare: function(letter){
 			for (i = 0; i < wordSplit.length; i++)
-				if (chosenWord.charAt(i) == guess){
+				if (wordSplit[i] == guess){
 					blanks[i] = letter;
 				}//close if 
 		},
-	// }
+	}
 	}// closing the object onStart
 		
 onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
-onStart.wordcompare();
+// onStart.wordcompare();
 
 // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
 // ==================================================================================================
