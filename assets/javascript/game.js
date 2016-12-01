@@ -71,8 +71,10 @@ var onStart = {
                 }
                 if (blanks.indexOf("_") == -1 && guessesRemaining > 0){
                     wins++;
+                   // reset();
                 } else if (blanks.indexOf("_") > -1 && guessesRemaining === 0){
                     losses++;
+                    //reset();
                 }
 								onStart.printGuessRemainder(); //FIX: update UI
 								onStart.printWordToGuess(); //FIX: update UI
@@ -118,6 +120,20 @@ var onStart = {
     //},
 }; // closing the object onStart
 
+// var reset = function(){
+// wordBank = ["phantom", "cats", "hairspray", "hamilton", "rent", "grease"]
+// chosenWord = ""; //will hold the word that is randomly chosen. Produced via function. working
+// guess; // will take keyboard input from user.. working
+// lettersGuessed = []; //an array filled by keystrokes entered by the user.  Uses a .push or .appendChild? Working
+// guessesRemaining = 7;
+// //wins = 0;
+// //losses = 0;
+// blanks = []; //will replace the letters in the chosen word once it is split into an array of the letters it contains. Working
+// wordSplit = []; 
+// };
+
+
+
 onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
@@ -125,6 +141,8 @@ onStart.guesstimation();
 onStart.printLettersGuessed();
 onStart.printGuessRemainder();
 onStart.printWordToGuess();
+onStart.printWins();
+onStart.printLosses();
 // onStart.wordcompare();
 
 // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
