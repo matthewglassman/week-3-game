@@ -36,6 +36,7 @@ var onStart = {
 				console.log(blanks);
 		},//closing wordDashed
 	guesstimation: function(){
+			//document.getElementById("lettersguessed").innerHTML = "Letters Guessed: "
 			document.onkeyup = function(event){
 				//var letters = /^[a-zA-Z]+$/;
 				//if (event.value.match(somethinghere?)){
@@ -56,19 +57,26 @@ var onStart = {
 				// 	lettersGuessed.push(guess);
 				// 	onStart.wordcompare(guess);
 				// };//closing if statement
-				if(guess && lettersGuessed.indexOf(guess) > -1){
-					alert("Already chose that one");
-				}else if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
+				if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
 					document.getElementById("lettersguessed").innerHTML = "Letters Guessed: "+lettersGuessed;
 					lettersGuessed.push(guess);
 					guessesRemaining--;
-					document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
+					//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
+
+				}else if(guess && lettersGuessed.indexOf(guess) > -1){
+					alert("Already chose that one");
+				// }else if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
+				// 	document.getElementById("lettersguessed").innerHTML = "Letters Guessed: "+lettersGuessed;
+				// 	lettersGuessed.push(guess);
+				// 	guessesRemaining--;
+				// 	document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 
 				}else{  // may need an additional condition to keep guess == true
 					for (i = 0; i < wordSplit.length; i++)
                 		if (wordSplit[i] == guess){
                     	blanks[i] = guess;
-                    	lettersGuessed.push(guess);	
+                    	//lettersGuessed.push(guess);
+                    	//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;	
                     }
                 }
 
@@ -76,19 +84,38 @@ var onStart = {
 			//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 				console.log(lettersGuessed);
 				console.log(guessesRemaining);
+				onStart.printGuessRemainder(); //FIX: update UI
+				onStart.printWordToGuess(); //FIX: update UI
+				onStart.printLettersGuessed(); //FIX: update UI
 
-			}//closing the document on key up function for guessing the letter
-			document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
-	},//close the guesstimation function
+
+                console.log(lettersGuessed);
+                console.log(guessesRemaining);
+            } //closing the document on key up function for guessing the letter
+    }, //close the guesstimation function
+    printGuessRemainder: function() {
+        var countedGuesses = document.getElementById("remainder");
+        countedGuesses.innerHTML = guessesRemaining;
+    },
+    printWordToGuess: function() {
+        var split = document.getElementById("wordtoguess");
+        split.innerHTML = blanks.join(" "); // FIX: join avoids comma
+    },
+    printLettersGuessed: function() {
+        var letters = document.getElementById("lettersguessed");
+        letters.innerHTML = lettersGuessed;
+    },
+	//closing the document on key up function for guessing the letter
+		
 	 //printGuessRemainder: function(){
 	//var countedGuesses = document.getElementById("remainder");
 	//countedGuesses.innerHTML = guessesRemaining;
 	//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 	//},
-	printWordToGuess: function(){
-		var split = document.getElementById("wordtoguess");
-		split.innerHTML = blanks;
-	},
+	// printWordToGuess: function(){
+	// 	var split = document.getElementById("wordtoguess");
+	// 	split.innerHTML = blanks;
+	// },
 	// printLettersGuessed: function(){
 	// 	var letters = document.getElementById("lettersguessed");
 	// 	letters.innerHTML = lettersGuessed;
@@ -111,10 +138,10 @@ onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
-//onStart.printLettersGuessed();
-//onStart.printGuessRemainder();
+onStart.printLettersGuessed();
+onStart.printGuessRemainder();
 onStart.printWordToGuess();
-// onStart.wordcompare();
+ onStart.wordcompare();
 
 // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
 // ==================================================================================================
