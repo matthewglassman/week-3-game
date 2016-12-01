@@ -61,13 +61,15 @@ var onStart = {
 				}else if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
 					lettersGuessed.push(guess);
 					guessesRemaining--;
+					document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 				}else{  // may need an additional condition to keep guess == true
 					for (i = 0; i < wordSplit.length; i++)
                 		if (wordSplit[i] == guess){
                     	blanks[i] = guess;
-                    	//lettersGuessed.push(guess);	
+                    	lettersGuessed.push(guess);	
                     }
                 }
+
 			//}
 			//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 				console.log(lettersGuessed);
@@ -76,10 +78,10 @@ var onStart = {
 			}//closing the document on key up function for guessing the letter
 			document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 	},//close the guesstimation function
-	// printGuessRemainder: function(){
-	// 	// var countedGuesses = document.getElementById("remainder");
-	// 	// countedGuesses.innerHTML = guessesRemaining;
-	// 	document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
+	 //printGuessRemainder: function(){
+	//var countedGuesses = document.getElementById("remainder");
+	//countedGuesses.innerHTML = guessesRemaining;
+	//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 	//},
 	printWordToGuess: function(){
 		var split = document.getElementById("wordtoguess");
