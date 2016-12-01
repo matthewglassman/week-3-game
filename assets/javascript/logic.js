@@ -41,7 +41,7 @@ var onStart = {
 				//if (event.value.match(somethinghere?)){
 				guess = String.fromCharCode(event.keyCode).toLowerCase();
 				//guessesRemaining =  + 3;
-				console.log(guessesRemaining);
+				//console.log(guessesRemaining);
 				//} else {
 				//alert("Please enter only alpha characters!");
 				//return false;
@@ -65,19 +65,22 @@ var onStart = {
 					for (i = 0; i < wordSplit.length; i++)
                 		if (wordSplit[i] == guess){
                     	blanks[i] = guess;
-                    	//lettersGuessed.push(guess);
-                    	
+                    	//lettersGuessed.push(guess);	
                     }
                 }
 			//}
+			//document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 				console.log(lettersGuessed);
 				console.log(guessesRemaining);
+
 			}//closing the document on key up function for guessing the letter
+			document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
 	},//close the guesstimation function
-	printGuessRemainder: function(){
-		var countedGuesses = document.getElementById("remainder");
-		countedGuesses.innerHTML = guessesRemaining;
-	},
+	// printGuessRemainder: function(){
+	// 	// var countedGuesses = document.getElementById("remainder");
+	// 	// countedGuesses.innerHTML = guessesRemaining;
+	// 	document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
+	//},
 	printWordToGuess: function(){
 		var split = document.getElementById("wordtoguess");
 		split.innerHTML = blanks;
@@ -105,7 +108,7 @@ onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
 onStart.printLettersGuessed();
-onStart.printGuessRemainder();
+//onStart.printGuessRemainder();
 onStart.printWordToGuess();
 // onStart.wordcompare();
 
