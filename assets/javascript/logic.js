@@ -81,7 +81,11 @@ var onStart = {
 	printWordToGuess: function(){
 		var split = document.getElementById("wordtoguess");
 		split.innerHTML = blanks;
-	}
+	},
+	printLettersGuessed: function(){
+		var letters = document.getElementById("lettersguessed");
+		letters.innerHTML = lettersGuessed;
+	},
 	
 	//put this function into the guestimation function and follow your pseudocode as to what happens.  change == guess to letter and call function with (guess)
 	// wordcompare: function(letter){ //use onKeycode.
@@ -100,7 +104,8 @@ onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
-onStart.printGuessRemainder(guessesRemaining);
+onStart.printLettersGuessed();
+onStart.printGuessRemainder();
 onStart.printWordToGuess();
 // onStart.wordcompare();
 
