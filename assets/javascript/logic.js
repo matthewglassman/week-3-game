@@ -59,9 +59,11 @@ var onStart = {
 				if(guess && lettersGuessed.indexOf(guess) > -1){
 					alert("Already chose that one");
 				}else if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
+					document.getElementById("lettersguessed").innerHTML = "Letters Guessed: "+lettersGuessed;
 					lettersGuessed.push(guess);
 					guessesRemaining--;
 					document.getElementById("remainder").innerHTML = "Guesses left: "+guessesRemaining;
+
 				}else{  // may need an additional condition to keep guess == true
 					for (i = 0; i < wordSplit.length; i++)
                 		if (wordSplit[i] == guess){
@@ -87,10 +89,10 @@ var onStart = {
 		var split = document.getElementById("wordtoguess");
 		split.innerHTML = blanks;
 	},
-	printLettersGuessed: function(){
-		var letters = document.getElementById("lettersguessed");
-		letters.innerHTML = lettersGuessed;
-	},
+	// printLettersGuessed: function(){
+	// 	var letters = document.getElementById("lettersguessed");
+	// 	letters.innerHTML = lettersGuessed;
+	// },
 	
 	//put this function into the guestimation function and follow your pseudocode as to what happens.  change == guess to letter and call function with (guess)
 	// wordcompare: function(letter){ //use onKeycode.
@@ -109,7 +111,7 @@ onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
-onStart.printLettersGuessed();
+//onStart.printLettersGuessed();
 //onStart.printGuessRemainder();
 onStart.printWordToGuess();
 // onStart.wordcompare();
