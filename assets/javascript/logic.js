@@ -5,7 +5,7 @@ var wordBank = ["phantom", "cats", "hairspray", "hamilton", "rent", "grease"]
 var chosenWord = ""; //will hold the word that is randomly chosen. Produced via function. working
 var guess;// will take keyboard input from user.. working
 var lettersGuessed = []; //an array filled by keystrokes entered by the user.  Uses a .push or .appendChild? Working
-var guessesRemaining;
+var guessesRemaining = 7;
 var wins = 0;
 var losses = 0;
 var blanks = []; //will replace the letters in the chosen word once it is split into an array of the letters it contains. Working
@@ -39,8 +39,8 @@ var onStart = {
 			document.onkeyup = function(event){
 				//var letters = /^[a-zA-Z]+$/;
 				//if (event.value.match(somethinghere?)){
-				guess = String.fromCharCode(event.keyCode).toUpperCase();
-				guessesRemaining = wordSplit.length + 3;//return true;
+				guess = String.fromCharCode(event.keyCode).toLowerCase();
+				//guessesRemaining =  + 3;
 				console.log(guessesRemaining);
 				//} else {
 				//alert("Please enter only alpha characters!");
@@ -48,32 +48,60 @@ var onStart = {
 				// }//closing if statement checking for alpha characters
 				console.log(guess);
 
-				//check to see if user entry is in array.
+				///check to see if user entry is in array.
 				//if it is warn user and if not add letter to array of letters guessed
-				if (lettersGuessed.indexOf(guess) > -1){
-					alert("You have already entered that letter!");
-				} else {
-					lettersGuessed.push(guess);  
-				};//closing if statement
+				// if (lettersGuessed.indexOf(guess) > -1){
+				// 	alert("You have already entered that letter!");
+				// } else {
+				// 	lettersGuessed.push(guess);
+				// 	onStart.wordcompare(guess);
+				// };//closing if statement
+				if(guess && lettersGuessed.indexOf(guess) > -1){
+					alert("Already chose that one");
+				}else if(guess && wordSplit.indexOf(guess) == -1 && lettersGuessed.indexOf(guess) == -1){
+					lettersGuessed.push(guess);
+					guessesRemaining--;
+				}else{  // may need an additional condition to keep guess == true
+					for (i = 0; i < wordSplit.length; i++)
+                		if (wordSplit[i] == guess){
+                    	blanks[i] = guess;
+                    	//lettersGuessed.push(guess);
+                    	
+                    }
+                }
+			//}
 				console.log(lettersGuessed);
 				console.log(guessesRemaining);
 			}//closing the document on key up function for guessing the letter
 	},//close the guesstimation function
+	printGuessRemainder: function(){
+		var countedGuesses = document.getElementById("remainder");
+		countedGuesses.innerHTML = guessesRemaining;
+	},
+	printWordToGuess: function(){
+		var split = document.getElementById("wordtoguess");
+		split.innerHTML = blanks;
+	}
 	
 	//put this function into the guestimation function and follow your pseudocode as to what happens.  change == guess to letter and call function with (guess)
-	wordcompare: function(letter){
-			for (i = 0; i < wordSplit.length; i++)
-				if (wordSplit[i] == guess){
-					blanks[i] = letter;
-				}//close if 
-		},
-	}
-	}// closing the object onStart
+	// wordcompare: function(letter){ //use onKeycode.
+	// 		for (i = 0; i < wordSplit.length; i++)
+	// 			if (wordSplit[i] == letter){
+	// 				blanks[i] = letter;
+	// 			}//else{
+	// 			//guessesRemaining = guessesRemaining -1;
+	// 			//}//closing the else
+	// 			}//close function
+		//},
+	//},
+	};// closing the object onStart
 		
 onStart.wordChoice();
 onStart.wordSplit();
 onStart.wordDashed();
 onStart.guesstimation();
+onStart.printGuessRemainder(guessesRemaining);
+onStart.printWordToGuess();
 // onStart.wordcompare();
 
 // MAIN PROCESS (THIS IS THE CODE THAT CONTROLS WHAT IS ACTUALLY RUN)
